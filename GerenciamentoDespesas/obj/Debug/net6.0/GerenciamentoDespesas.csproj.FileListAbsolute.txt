@@ -1,0 +1,17 @@
+C:\Users\carol\OneDrive\Área de Trabalho\Desafio It Academy\GerenciamentoDespesas\GerenciamentoDespesas\bin\Debug\net6.0\GerenciamentoDespesas.exe
+C:\Users\carol\OneDrive\Área de Trabalho\Desafio It Academy\GerenciamentoDespesas\GerenciamentoDespesas\bin\Debug\net6.0\GerenciamentoDespesas.deps.json
+C:\Users\carol\OneDrive\Área de Trabalho\Desafio It Academy\GerenciamentoDespesas\GerenciamentoDespesas\bin\Debug\net6.0\GerenciamentoDespesas.runtimeconfig.json
+C:\Users\carol\OneDrive\Área de Trabalho\Desafio It Academy\GerenciamentoDespesas\GerenciamentoDespesas\bin\Debug\net6.0\GerenciamentoDespesas.dll
+C:\Users\carol\OneDrive\Área de Trabalho\Desafio It Academy\GerenciamentoDespesas\GerenciamentoDespesas\bin\Debug\net6.0\GerenciamentoDespesas.pdb
+C:\Users\carol\OneDrive\Área de Trabalho\Desafio It Academy\GerenciamentoDespesas\GerenciamentoDespesas\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\carol\OneDrive\Área de Trabalho\Desafio It Academy\GerenciamentoDespesas\GerenciamentoDespesas\obj\Debug\net6.0\GerenciamentoDespesas.csproj.AssemblyReference.cache
+C:\Users\carol\OneDrive\Área de Trabalho\Desafio It Academy\GerenciamentoDespesas\GerenciamentoDespesas\obj\Debug\net6.0\GerenciamentoDespesas.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\carol\OneDrive\Área de Trabalho\Desafio It Academy\GerenciamentoDespesas\GerenciamentoDespesas\obj\Debug\net6.0\GerenciamentoDespesas.AssemblyInfoInputs.cache
+C:\Users\carol\OneDrive\Área de Trabalho\Desafio It Academy\GerenciamentoDespesas\GerenciamentoDespesas\obj\Debug\net6.0\GerenciamentoDespesas.AssemblyInfo.cs
+C:\Users\carol\OneDrive\Área de Trabalho\Desafio It Academy\GerenciamentoDespesas\GerenciamentoDespesas\obj\Debug\net6.0\GerenciamentoDespesas.csproj.CoreCompileInputs.cache
+C:\Users\carol\OneDrive\Área de Trabalho\Desafio It Academy\GerenciamentoDespesas\GerenciamentoDespesas\obj\Debug\net6.0\GerenciamentoDespesas.csproj.CopyComplete
+C:\Users\carol\OneDrive\Área de Trabalho\Desafio It Academy\GerenciamentoDespesas\GerenciamentoDespesas\obj\Debug\net6.0\GerenciamentoDespesas.dll
+C:\Users\carol\OneDrive\Área de Trabalho\Desafio It Academy\GerenciamentoDespesas\GerenciamentoDespesas\obj\Debug\net6.0\refint\GerenciamentoDespesas.dll
+C:\Users\carol\OneDrive\Área de Trabalho\Desafio It Academy\GerenciamentoDespesas\GerenciamentoDespesas\obj\Debug\net6.0\GerenciamentoDespesas.pdb
+C:\Users\carol\OneDrive\Área de Trabalho\Desafio It Academy\GerenciamentoDespesas\GerenciamentoDespesas\obj\Debug\net6.0\GerenciamentoDespesas.genruntimeconfig.cache
+C:\Users\carol\OneDrive\Área de Trabalho\Desafio It Academy\GerenciamentoDespesas\GerenciamentoDespesas\obj\Debug\net6.0\ref\GerenciamentoDespesas.dll

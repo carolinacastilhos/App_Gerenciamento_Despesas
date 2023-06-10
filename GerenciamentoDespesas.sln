@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GerenciamentoDespesas", "GerenciamentoDespesas\GerenciamentoDespesas.csproj", "{807C5660-A441-4D3A-87F0-3FDB31AA00C5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{807C5660-A441-4D3A-87F0-3FDB31AA00C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{807C5660-A441-4D3A-87F0-3FDB31AA00C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{807C5660-A441-4D3A-87F0-3FDB31AA00C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{807C5660-A441-4D3A-87F0-3FDB31AA00C5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3CE19FB0-5624-4946-B696-BCCEB3FB39BA}
+	EndGlobalSection
+EndGlobal
