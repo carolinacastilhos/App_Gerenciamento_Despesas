@@ -148,15 +148,29 @@ namespace GerenciamentoDespesas
                     }                    
                 }
                 else
-                {
-                    accounts.Remove(indexToExclude);
-                    jsonAccounts = JsonConvert.SerializeObject(accounts);
-                    File.WriteAllText(_pathAccountsData, jsonAccounts);
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("\nAccount removed!\n"); 
-                    Console.ResetColor();
-                    Thread.Sleep(1000);
-                    entry = "n";                 
+                {                   
+                        Console.Write("\nDeseja realmente excluir a conta (Y/N)? ");
+                        string entrada = Console.ReadLine().ToLower();
+
+                        if (entrada == "y")
+                        {
+                            accounts.Remove(indexToExclude);
+                            jsonAccounts = JsonConvert.SerializeObject(accounts);
+                            File.WriteAllText(_pathAccountsData, jsonAccounts);
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("\nAccount removed!\n");
+                            Console.ResetColor();
+                            Thread.Sleep(1000);
+                            entry = "n";
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("\nAccount not removed!\n");
+                            Console.ResetColor();
+                            Thread.Sleep(1000);
+                            entry = "n";
+                        }                                        
                 }
             }
             while (entry == "y");
@@ -170,14 +184,11 @@ namespace GerenciamentoDespesas
             Console.ResetColor();
             Console.ReadKey();
             Console.Clear();
-       }
-
-    
+       }    
 
         public static void MergeAccounts()
         {
 
         }
-
     }
 }

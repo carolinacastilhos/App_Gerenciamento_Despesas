@@ -23,6 +23,7 @@ namespace GerenciamentoDespesas
                     case 2:
                         break;
                     case 3:
+                        Panel.DetailsAccount();
                         break;
                     case 4:
                         Print.Exit();
