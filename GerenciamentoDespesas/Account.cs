@@ -17,13 +17,15 @@ namespace GerenciamentoDespesas
         public string AccountNumber { get; set; } = null!;
         public string BankBranch { get; set; } = null!;
         public double Balance { get; set; }
-       
+        public List<string> Transactions { get; set; } = null!;
+
         // construtores
         public Account(string accountNumber, string bankBranch)
         {
             AccountNumber = accountNumber;
             BankBranch = bankBranch;
             Balance = 0;
+            Transactions = new List<string>();
         }
 
         public Account()

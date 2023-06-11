@@ -14,9 +14,6 @@ namespace GerenciamentoDespesas
 
         public static void DetailsAccount()
         {
-            //Resumo das contas: listar cada conta e seu saldo atual, bem como o saldo
-            //total do usuário(considerando todas as suas contas);
-
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("\n\t -------- Accounts' Details --------\n");
@@ -39,7 +36,7 @@ namespace GerenciamentoDespesas
                         string balanceValueKey = "Balance";
                         double balanceValue = double.Parse(item[balanceValueKey]);
                         Console.ForegroundColor = ConsoleColor.Magenta;
-                        Console.WriteLine($" {i} Account: ");
+                        Console.WriteLine($"{i}. Account: ");
                         Console.ResetColor();
                         Console.WriteLine($"Number: {accountValue} | Bank Branch: {branchvalue} | Balance: {balanceValue}\n");
                         i++;
