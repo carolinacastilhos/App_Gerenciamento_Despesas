@@ -21,7 +21,7 @@ namespace GerenciamentoDespesas
                         Account.AccountManagementMenu();
                         break;
                     case 2:
-                        Transactions.IncludeTransaction();
+                        Transactions.TransactionsMenu();
                         break;
                     case 3:
                         Panel.DetailsAccount();

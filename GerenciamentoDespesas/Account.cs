@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -34,7 +35,7 @@ namespace GerenciamentoDespesas
         }
 
         //adicionando caminho do arquivo json
-        private static string _pathAccountsData = @"C:\Users\carol\OneDrive\Área de Trabalho\Desafio It Academy\GerenciamentoDespesas\GerenciamentoDespesas\AccountsData.json";
+        private static string _pathAccountsData = @"..\..\..\AccountsData.json";
 
         // métodos
         public static void AccountManagementMenu()
@@ -108,10 +109,13 @@ namespace GerenciamentoDespesas
             Print.ShowContinueMessage();
         }
 
-       public static void RemoveAccount()
-       {
-            string entry = "n";
-            Dictionary<string, string> indexToExclude;
+        public static void RemoveAccount()
+        {
+            Account? account = null;
+            string excludeAccountNumber;
+            bool accountExists;
+            string jsonAccounts;
+            List<Account> accounts;
 
             do
             {
@@ -119,69 +123,68 @@ namespace GerenciamentoDespesas
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine("\n\t -------- Remove Account --------\n");
                 Console.ResetColor();
-                Console.Write("Type the number account: ");
-                string numberToExclude = Console.ReadLine()!;
 
-                string jsonAccounts = File.ReadAllText(_pathAccountsData);
-                List<Dictionary<string, string>> accounts = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(jsonAccounts)!;
-                indexToExclude = accounts.Find(d => d["AccountNumber"] == numberToExclude)!;                        
-                
-                if (indexToExclude == null)
+                Console.Write("Please, enter the account number: ");
+                excludeAccountNumber = Console.ReadLine()!;
+
+                jsonAccounts = File.ReadAllText(_pathAccountsData);
+                accounts = JsonConvert.DeserializeObject<List<Account>>(jsonAccounts)!;
+
+                if (string.IsNullOrEmpty(excludeAccountNumber))
                 {
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
-                    Console.Write("Account number not found. Would you like to try again (Y/N)? ");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Invalid account number. Please, enter a valid account number.");
                     Console.ResetColor();
-                    entry = Console.ReadLine()!.ToLower();
-                    Console.WriteLine();                    
-                    Console.Clear();
-
-                    if (entry != "y" & entry != "n")
-                    {
-                        Console.ForegroundColor = ConsoleColor.DarkYellow;
-                        Console.WriteLine("\nWrong code. Would you like to try again (Y/N)?\n");
-                        Console.ResetColor();
-                        entry = Console.ReadLine()!.ToLower();
-                        Console.WriteLine();                        
-                        Console.Clear();
-                    }                    
+                    accountExists = false;
                 }
                 else
-                {                   
-                        Console.Write("\nDo you really want to remove the account (Y/N)? ");
-                        string entrada = Console.ReadLine()!.ToLower();
+                {
+                    account = accounts.FirstOrDefault(p => p.AccountNumber == excludeAccountNumber)!;
+                    accountExists = account != null;
 
-                        if (entrada == "y")
-                        {
-                            accounts.Remove(indexToExclude);
-                            jsonAccounts = JsonConvert.SerializeObject(accounts);
-                            File.WriteAllText(_pathAccountsData, jsonAccounts);
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("\nAccount removed!\n");
-                            Console.ResetColor();
-                            Thread.Sleep(1000);
-                            entry = "n";
-                        }
-                        else
-                        {
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("\nAccount not removed!\n");
-                            Console.ResetColor();
-                            Thread.Sleep(1000);
-                            entry = "n";
-                        }                                        
+                    if (!accountExists)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Account not found! Please, try again.");
+                        Console.ResetColor();
+                    }
                 }
-            }
-            while (entry == "y");
 
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("\n\t -------- Remove Account --------\n");
-            Console.ResetColor();
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\n< Press any key to return to Account Management Menu");
-            Console.ResetColor();
-            Console.ReadKey();
-            Console.Clear();
-       }            
+            } while (string.IsNullOrEmpty(excludeAccountNumber) || !accountExists);
+
+            string entry;
+
+            do
+            {             
+                Console.Write("\nDo you really want to remove the account (Y/N)? ");
+                entry = Console.ReadLine()!.ToLower();
+
+                if (entry == "y")
+                {
+                    accounts.Remove(account);
+                    jsonAccounts = JsonConvert.SerializeObject(accounts);
+                    File.WriteAllText(_pathAccountsData, jsonAccounts);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("\nAccount removed!\n");
+                    Console.ResetColor();
+                }
+                else if (entry == "n")
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("\nAccount not removed!\n");
+                    Console.ResetColor();
+                }
+                else
+                {
+                    Print.InvalidInputWarning();
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine("\n\t -------- Remove Account --------\n");
+                    Console.ResetColor();
+                }
+
+            } while (entry != "y" & entry != "n");
+
+            Print.ShowContinueMessage();
+        }
     }
 }

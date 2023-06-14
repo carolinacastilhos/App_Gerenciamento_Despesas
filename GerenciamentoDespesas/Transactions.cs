@@ -35,7 +35,48 @@ namespace GerenciamentoDespesas
 
         }
 
-        private static string _pathAccountsData = @"C:\Users\carol\OneDrive\Área de Trabalho\Desafio It Academy\GerenciamentoDespesas\GerenciamentoDespesas\AccountsData.json";
+        private static string _pathAccountsData = @"..\..\..\AccountsData.json";
+
+        public static void TransactionsMenu()
+        {
+
+            int option;
+
+            do
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("\n\t -------- Transactions Menu --------\n");
+                Console.ResetColor();
+
+                Console.WriteLine("\t1. Include a Transaction");
+                Console.WriteLine("\t2. Show all Transactions of an Account");
+                Console.WriteLine("\t3. Leave Transactions Menu\n");
+
+                Console.Write("\tEnter your option: ");
+                int.TryParse(Console.ReadLine(), out option);
+
+                switch (option)
+                {
+                    case 1:
+                        IncludeTransaction();
+                        break;
+                    case 2:
+                        ShowTransactions();
+                        break;
+                    case 3:
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("\nYou are leaving Transactions Menu...\n");
+                        Console.ResetColor();
+                        Print.ShowContinueMessage();
+                        break;
+                    default:
+                        Print.InvalidInputWarning();
+                        break;
+                }
+            }
+            while (option != 3);
+        }
 
         public static void IncludeTransaction()
         {
@@ -174,6 +215,71 @@ namespace GerenciamentoDespesas
             } while (endOfTransaction == false) ;
              
         }
+
+        public static void ShowTransactions()
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("\n\t -------- Showing Transactions --------\n");
+            Console.ResetColor();
+
+            string transAccountNumber;
+            string jsonAccounts;
+            List<Account> accounts;
+
+            jsonAccounts = File.ReadAllText(_pathAccountsData);
+            accounts = JsonConvert.DeserializeObject<List<Account>>(jsonAccounts)!;
+
+            do
+            {
+                Console.Write("Please, enter the account number: ");
+                transAccountNumber = Console.ReadLine()!;
+
+                if (string.IsNullOrEmpty(transAccountNumber))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Invalid account number. Please, enter a valid account number.");
+                    Console.ResetColor();
+                }
+                else
+                {
+                    var account = accounts.FirstOrDefault(p => p.AccountNumber == transAccountNumber);
+
+                    if (account == null)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Account not found! Please, try again.");
+                        Console.ResetColor();
+                    }
+                    else if (account.Transactions?.Count > 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("\nTransactions for Account: " + account.AccountNumber);
+                        Console.WriteLine("------------------------------\n");
+                        Console.ResetColor();
+
+                        foreach (Transactions transaction in account.Transactions)
+                        {
+                            Console.WriteLine("Date: " + transaction.Date);
+                            Console.WriteLine("Type: " + transaction.Type);
+                            Console.WriteLine("Category: " + transaction.Category);
+                            Console.WriteLine("Description: " + transaction.Description);
+                            Console.WriteLine("Value: " + transaction.Value.ToString("C2", new CultureInfo("pt-BR")));
+                            Console.WriteLine("------------------------------\n");
+                        }
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("No transactions found for Account: " + account.AccountNumber);
+                        Console.ResetColor();
+                    }
+                }
+            } while (string.IsNullOrEmpty(transAccountNumber));
+
+            Print.ShowContinueMessage();
+        }
+
     }
 }
 

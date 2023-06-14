@@ -11,7 +11,7 @@ namespace GerenciamentoDespesas
 {
     public class Panel
     {
-        private static string _pathAccountsData = @"C:\Users\carol\OneDrive\Área de Trabalho\Desafio It Academy\GerenciamentoDespesas\GerenciamentoDespesas\AccountsData.json";
+        private static string _pathAccountsData = @"..\..\..\AccountsData.json";
 
         public static void DetailsAccount()
         {
