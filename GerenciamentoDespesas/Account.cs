@@ -16,16 +16,16 @@ namespace GerenciamentoDespesas
         // propriedades
         public string AccountNumber { get; set; } = null!;
         public string BankBranch { get; set; } = null!;
+        [JsonProperty("Balance")]
         public double Balance { get; set; }
-        public List<string> Transactions { get; set; } = null!;
+        public List<Transactions>? Transactions { get; set; } 
 
         // construtores
         public Account(string accountNumber, string bankBranch)
         {
             AccountNumber = accountNumber;
             BankBranch = bankBranch;
-            Balance = 0;
-            Transactions = new List<string>();
+            Balance = 0.0;
         }
 
         public Account()
@@ -51,8 +51,7 @@ namespace GerenciamentoDespesas
 
                 Console.WriteLine("\t1. Register Account");
                 Console.WriteLine("\t2. Remove Account");
-                Console.WriteLine("\t3. Merge Accounts");
-                Console.WriteLine("\t4. Leave Account Management Menu\n");
+                Console.WriteLine("\t3. Leave Account Management Menu\n");
 
                 Console.Write("\tEnter your option: ");
                 int.TryParse(Console.ReadLine(), out option);
@@ -66,9 +65,6 @@ namespace GerenciamentoDespesas
                         RemoveAccount();
                         break;
                     case 3:
-                        //MergeAccounts();
-                        break;
-                    case 4:
                         Console.ForegroundColor = ConsoleColor.Magenta;
                         Console.WriteLine("\nYou are leaving Account Management Menu...\n");
                         Console.ResetColor();
@@ -79,7 +75,7 @@ namespace GerenciamentoDespesas
                         break;
                 }
             }
-            while (option != 4);
+            while (option != 3);
         }
 
 
@@ -135,7 +131,7 @@ namespace GerenciamentoDespesas
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.Write("Account number not found. Would you like to try again (Y/N)? ");
                     Console.ResetColor();
-                    entry = Console.ReadLine().ToLower();
+                    entry = Console.ReadLine()!.ToLower();
                     Console.WriteLine();                    
                     Console.Clear();
 
@@ -144,15 +140,15 @@ namespace GerenciamentoDespesas
                         Console.ForegroundColor = ConsoleColor.DarkYellow;
                         Console.WriteLine("\nWrong code. Would you like to try again (Y/N)?\n");
                         Console.ResetColor();
-                        entry = Console.ReadLine().ToLower();
+                        entry = Console.ReadLine()!.ToLower();
                         Console.WriteLine();                        
                         Console.Clear();
                     }                    
                 }
                 else
                 {                   
-                        Console.Write("\nDeseja realmente excluir a conta (Y/N)? ");
-                        string entrada = Console.ReadLine().ToLower();
+                        Console.Write("\nDo you really want to remove the account (Y/N)? ");
+                        string entrada = Console.ReadLine()!.ToLower();
 
                         if (entrada == "y")
                         {
@@ -186,11 +182,6 @@ namespace GerenciamentoDespesas
             Console.ResetColor();
             Console.ReadKey();
             Console.Clear();
-       }    
-
-        public static void MergeAccounts()
-        {
-
-        }
+       }            
     }
 }

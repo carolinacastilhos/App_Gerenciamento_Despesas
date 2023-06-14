@@ -13,7 +13,9 @@ namespace GerenciamentoDespesas
         public static void Welcome()
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine("\tWelcome to your Personal Expense Management App!");
+            Console.WriteLine("\t-------------------------------------------------------");
+            Console.WriteLine("\t   Welcome to your Personal Expense Management App!");
+            Console.WriteLine("\t-------------------------------------------------------");
             Console.ResetColor();
         }
         public static void ShowMainMenu()
@@ -50,7 +52,9 @@ namespace GerenciamentoDespesas
 
         public static void ShowContinueMessage()
         {
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("\nPlase, press any key to continue...");
+            Console.ResetColor();
             Console.ReadKey();
             Console.Clear();
         }

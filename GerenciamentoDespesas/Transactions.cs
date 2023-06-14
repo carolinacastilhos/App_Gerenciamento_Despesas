@@ -1,12 +1,15 @@
-﻿using Newtonsoft.Json;
+﻿using GerenciamentoDespesas;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace GerenciamentoDespesas
 {
@@ -36,55 +39,141 @@ namespace GerenciamentoDespesas
 
         public static void IncludeTransaction()
         {
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("\n\t -------- Including Transaction --------\n");
-            Console.ResetColor();
+            bool endOfTransaction = false;
+            Account? account = null; 
 
-            Console.Write("Please, entry the account number of the transaction: ");
-            string transAccountNumber = Console.ReadLine()!;
-            Console.Write("Now, entry the type of the transaction (income or expense): ");
-            string type = Console.ReadLine()!;
-            Console.Write("Entry the date of the transaction (dd/mm/yyyy): ");
-            string date = Console.ReadLine()!;
-            Console.Write("Entry the category of the transaction (food, wage, home...): ");
-            string category = Console.ReadLine()!;
-            Console.Write("Entry a description: ");
-            string description = Console.ReadLine()!;
-            Console.Write("Entry the value of the transaction: ");
-            double value = double.Parse(Console.ReadLine()!);
+            do
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("\n\t -------- Including Transaction --------\n");
+                Console.ResetColor();
 
-            //Transactions transaction = new Transactions(date, type, category, description, value);
+                string transAccountNumber;
+                bool accountExists;
+                string jsonAccounts;
+                List<Account> accounts;
 
-            /*string[] transaction = new string[5];
-            transaction[0] = type;
-            transaction[1] = date;
-            transaction[2] = category;
-            transaction[3] = description;
-            transaction[4] = value.ToString();*/
-
-            string nameKey = "Transaction";
-
-            string jsonAccounts = File.ReadAllText(_pathAccountsData);
-            List<Dictionary<string, string>> accounts = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(jsonAccounts)!;
-
-            if (accounts is not null)
-            { 
-                foreach (var item in accounts) 
+                do
                 {
-                    string accountNumber = "AccountNumber";
-                    string accountValue = item[accountNumber];                    
+                    Console.Write("Please, enter the account number of the transaction: ");
+                    transAccountNumber = Console.ReadLine()!;
 
-                    if (accountValue == transAccountNumber)
+                    jsonAccounts = File.ReadAllText(_pathAccountsData);
+                    accounts = JsonConvert.DeserializeObject<List<Account>>(jsonAccounts)!;
+
+                    if (string.IsNullOrEmpty(transAccountNumber))
                     {
-                        item.Add(nameKey, type, date, category, description, value.ToString());                        
-                    }           
-                }
-            }
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Invalid account number. Please, enter a valid account number.");
+                        Console.ResetColor();
+                        accountExists = false;
+                    }
+                    else
+                    {
+                        account = accounts.FirstOrDefault(p => p.AccountNumber == transAccountNumber)!;
+                        accountExists = account != null;
 
-            jsonAccounts = JsonConvert.SerializeObject(accounts);
-            File.WriteAllText(_pathAccountsData, jsonAccounts);
-            Console.WriteLine(jsonAccounts);
+                        if (!accountExists)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Account not found! Please, try again.");
+                            Console.ResetColor();
+                        }
+                    }
+
+                } while (string.IsNullOrEmpty(transAccountNumber) || !accountExists);
+
+                string type;
+
+                do
+                {
+                    Console.Write("Type of the transaction (income or expense): ");
+                    type = Console.ReadLine()!.ToLower();
+
+                    if (type != "income" && type != "expense")
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Invalid transaction type. Please, enter 'income' or 'expense'.");
+                        Console.ResetColor();
+                    }
+
+                } while (type != "income" && type != "expense");
+
+
+                string date;
+
+                do
+                {
+                    Console.Write("Date of the transaction (dd/mm/yyyy): ");
+                    date = Console.ReadLine()!;
+
+                    if (!DateTime.TryParseExact(date, "dd/mm/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Invalid date format. Please, enter the date in the format dd/mm/yyyy.");
+                        Console.ResetColor();
+                    }
+
+                } while (!DateTime.TryParseExact(date, "dd/mm/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _));
+
+
+
+                Console.Write("Category of the transaction (food, wage, home...): ");
+                string category = Console.ReadLine()!;
+
+                Console.Write("Description of the transaction: ");
+                string description = Console.ReadLine()!;
+
+                string valueInput;
+                double value;
+
+                do
+                {
+                    Console.Write("Value: ");
+                    valueInput = Console.ReadLine()!;
+
+                    if (!double.TryParse(valueInput, NumberStyles.Number, CultureInfo.InvariantCulture, out value) || value <= 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Invalid value. Please, enter a numeric value greater than 0.");
+                        Console.ResetColor();
+                    }
+
+                } while (!double.TryParse(valueInput, NumberStyles.Number, CultureInfo.InvariantCulture, out value) || value <= 0);
+
+                if (account != null)
+                {
+                    if (account.Transactions == null)
+                    {
+                        account.Transactions = new List<Transactions>();
+                    }
+
+                    Transactions transaction = new Transactions(date, type, category, description, value);
+                    account.Transactions.Add(transaction);
+
+                    if (type == "income")
+                    {
+                        account.Balance += transaction.Value;
+                    }
+
+                    if (type == "expense")
+                    {
+                        account.Balance -= transaction.Value;
+                    }
+
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("\nTransaction added to the account and balance updated!");
+                    Console.ResetColor();
+                    endOfTransaction = true;
+                    jsonAccounts = JsonConvert.SerializeObject(accounts);
+                    File.WriteAllText(_pathAccountsData, jsonAccounts);
+                    Print.ShowContinueMessage();
+                }
+
+            } while (endOfTransaction == false) ;
+             
         }
     }
 }
+
