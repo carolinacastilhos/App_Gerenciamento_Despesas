@@ -23,27 +23,27 @@ individuais e o saldo total de todas as contas associadas.
 
 ### Demonstração de algumas funcionalidades e validações
 
-<div align="center"><img src="https://github.com/carolinacastilhos/App_Gerenciamento_Despesas/assets/117789578/1a587b71-38ab-4d9a-b474-5d9a724ce1d7" width="200px" /></div>
+<div align="center"><img src="https://github.com/carolinacastilhos/App_Gerenciamento_Despesas/assets/117789578/1a587b71-38ab-4d9a-b474-5d9a724ce1d7" width="450px" /></div>
 
-<div align="center"><img src="https://github.com/carolinacastilhos/App_Gerenciamento_Despesas/assets/117789578/37b5f8c2-9dd5-41f1-9d3b-fd819880514d" width="200px" /></div>
+<div align="center"><img src="https://github.com/carolinacastilhos/App_Gerenciamento_Despesas/assets/117789578/37b5f8c2-9dd5-41f1-9d3b-fd819880514d" width="450px" /></div>
 
-<div align="center"><img src="https://github.com/carolinacastilhos/App_Gerenciamento_Despesas/assets/117789578/5ba9a010-f7f4-43ff-8fbe-45e44087924c" width="200px" /></div>
+<div align="center"><img src="https://github.com/carolinacastilhos/App_Gerenciamento_Despesas/assets/117789578/5ba9a010-f7f4-43ff-8fbe-45e44087924c" width="450px" /></div>
 
-<div align="center"><img src="https://github.com/carolinacastilhos/App_Gerenciamento_Despesas/assets/117789578/ddae8ee3-000c-4e16-9f68-ef09f97c3689" width="200px" /></div>
+<div align="center"><img src="https://github.com/carolinacastilhos/App_Gerenciamento_Despesas/assets/117789578/b54fe3c8-61ec-408e-b84c-c0404f06199a" width="450px" /></div>
 
-<div align="center"><img src="https://github.com/carolinacastilhos/App_Gerenciamento_Despesas/assets/117789578/a828298d-2a81-42b7-afe8-675e27a14a86" width="200px" /></div>
+<div align="center"><img src="https://github.com/carolinacastilhos/App_Gerenciamento_Despesas/assets/117789578/12b6e882-3467-42b6-a493-042a1459904d" width="450px" /></div>
 
-<div align="center"><img src="https://github.com/carolinacastilhos/App_Gerenciamento_Despesas/assets/117789578/437f121e-da4c-4e28-a446-6bc4d1f1bb58" width="200px" /></div>
+<div align="center"><img src="https://github.com/carolinacastilhos/App_Gerenciamento_Despesas/assets/117789578/2fad2bac-e0bd-48dc-9035-89a36f0e3f83" width="450px" /></div>
 
-<div align="center"><img src="https://github.com/carolinacastilhos/App_Gerenciamento_Despesas/assets/117789578/8e6f87c3-3882-4b55-bdeb-9a9c5483b423" width="200px" /></div>
+<div align="center"><img src="https://github.com/carolinacastilhos/App_Gerenciamento_Despesas/assets/117789578/ddae8ee3-000c-4e16-9f68-ef09f97c3689" width="450px" /></div>
 
-<div align="center"><img src="https://github.com/carolinacastilhos/App_Gerenciamento_Despesas/assets/117789578/d62e40c5-603f-4c36-a267-f7e2f59f4790" width="200px" /></div>
+<div align="center"><img src="https://github.com/carolinacastilhos/App_Gerenciamento_Despesas/assets/117789578/a828298d-2a81-42b7-afe8-675e27a14a86" width="450px" /></div>
 
-<div align="center"><img src="https://github.com/carolinacastilhos/App_Gerenciamento_Despesas/assets/117789578/b54fe3c8-61ec-408e-b84c-c0404f06199a" width="200px" /></div>
+<div align="center"><img src="https://github.com/carolinacastilhos/App_Gerenciamento_Despesas/assets/117789578/437f121e-da4c-4e28-a446-6bc4d1f1bb58" width="450px" /></div>
 
-<div align="center"><img src="https://github.com/carolinacastilhos/App_Gerenciamento_Despesas/assets/117789578/12b6e882-3467-42b6-a493-042a1459904d" width="200px" /></div>
+<div align="center"><img src="https://github.com/carolinacastilhos/App_Gerenciamento_Despesas/assets/117789578/8e6f87c3-3882-4b55-bdeb-9a9c5483b423" width="450px" /></div>
 
-<div align="center"><img src="https://github.com/carolinacastilhos/App_Gerenciamento_Despesas/assets/117789578/2fad2bac-e0bd-48dc-9035-89a36f0e3f83" width="200px" /></div>
+<div align="center"><img src="https://github.com/carolinacastilhos/App_Gerenciamento_Despesas/assets/117789578/d62e40c5-603f-4c36-a267-f7e2f59f4790" width="450px" /></div>
 
 ### Execução da Aplicação
 
